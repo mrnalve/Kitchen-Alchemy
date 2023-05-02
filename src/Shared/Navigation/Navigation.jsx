@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navigation = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div>
       <div className="navbar">
@@ -28,27 +31,49 @@ const Navigation = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to={'/'}>Home</Link>
+                <Link to={"/"}>Home</Link>
               </li>
               <li>
                 <a>Blog</a>
               </li>
             </ul>
           </div>
-          <a className="font-extrabold text-2xl text-yellow-600">KITCHEN-ALCHEMY</a>
+          <a className="font-extrabold text-2xl text-yellow-600">
+            KITCHEN-ALCHEMY
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li  className="text-2xl inline-block font-medium">
-            <Link to={'/'}>Home</Link>
+            <li className="text-2xl inline-block font-medium">
+              <Link to={"/"}>Home</Link>
             </li>
             <li className="text-2xl inline-block font-medium">
               <a>Blog</a>
             </li>
           </ul>
         </div>
+
         <div className="navbar-end">
-          <Link to={'/login'} className="btn">Login</Link>
+          {user && (
+            <div className="avatar online">
+              <div className="w-12 rounded-full">
+                <img
+                  title={user?.displayName}
+                  src={user?.photoURl}
+                  alt="Avatar"
+                />
+              </div>
+            </div>
+          )}
+          {user ? (
+            <button className="btn ml-2">
+              Log out
+            </button>
+          ) : (
+            <Link to={"/login"} className="btn ml-2">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
