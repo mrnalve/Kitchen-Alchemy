@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import favourite from "../../../public/heart.png";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Recipe from "../Recipe/Recipe";
 
 const ChefDetails = () => {
+  const [recipeData, setRecipeData] = useState([]);
   const chefDetails = useLoaderData();
   const {
+    id,
     banner_pic,
     name,
     description,
@@ -15,41 +16,41 @@ const ChefDetails = () => {
     likes,
   } = chefDetails;
 
-  const [isDisabled, setIsDisabled] = useState(false);
-  const handleClick = () => {
-    setIsDisabled(true);
-    toast.success("Save to the favourite", {
-        position: toast.POSITION.TOP_CENTER
-      });
-  };
+  // loading recipe data for each chef
+  useEffect(() => {
+    fetch(`http://localhost:5000/recipes/${id}`)
+      .then((res) => res.json())
+      .then((data) => setRecipeData(data));
+  }, []);
+
   return (
     <div>
-      <div className="card grid grid-cols-1 md:grid-cols-2 lg:card-side bg-base-100 shadow-xl">
-        <figure className="">
-          <img src={banner_pic} alt="banner" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{name}</h2>
-          <p>{description}</p>
-          <h4>Years fo experience: {years_of_experience}</h4>
-          <h4>Number fo Recipe: {number_of_recipes}</h4>
-          <h4>Likes: {likes}</h4>
-          <div className="card-actions">
-            {!isDisabled ? (
-              <button
-                onClick={handleClick}
-                className="btn btn-error text-white"
-              >
-                Favourite
-              </button>
-            ) : (
-              <button className="btn btn-error text-white" disabled>
-                Favourite
-                <ToastContainer></ToastContainer>
-              </button>
-            )}
-            {/* <img className="w-8" src={favourite} alt="" /> */}
+      <div>
+        <div className="card grid grid-cols-1 md:grid-cols-2 lg:card-side bg-base-100 shadow-xl">
+          <figure className="">
+            <img src={banner_pic} alt="banner" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{name}</h2>
+            <p>{description}</p>
+            <h4>Years fo experience: {years_of_experience}</h4>
+            <h4>Number fo Recipe: {number_of_recipes}</h4>
+            <h4>Likes: {likes}</h4>
+            <div className="card-actions">
+              
+              {/* <img className="w-8" src={favourite} alt="" /> */}
+            </div>
           </div>
+        </div>
+      </div>
+      <div className="my-20">
+        <h2 className="font-bold text-4xl text-yellow-500 text-center underline">
+          Recipe list
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {recipeData.map((recipe) => (
+            <Recipe key={recipe.id} recipe={recipe}></Recipe>
+          ))}
         </div>
       </div>
     </div>
