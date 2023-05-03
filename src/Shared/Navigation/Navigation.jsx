@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navigation = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   console.log(user);
+  // log out user
+  const handleSignOut = () => {
+    logOut();
+  };
   return (
     <div>
       <div className="navbar">
@@ -59,14 +63,14 @@ const Navigation = () => {
               <div className="w-12 rounded-full">
                 <img
                   title={user?.displayName}
-                  src={user?.photoURl}
+                  src={user?.photoURL}
                   alt="Avatar"
                 />
               </div>
             </div>
           )}
           {user ? (
-            <button className="btn ml-2">
+            <button onClick={handleSignOut} className="btn ml-2">
               Log out
             </button>
           ) : (
