@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navigation = () => {
@@ -35,10 +35,26 @@ const Navigation = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to={"/"}>Home</Link>
+                <NavLink
+                  className={`${(isActive) =>
+                    isActive
+                      ? "active"
+                      : ""}`}
+                  to={"/"}
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a>Blog</a>
+                <NavLink
+                  className={`${(isActive) =>
+                    isActive
+                      ? "active"
+                      : ""}`}
+                  to={"/blog"}
+                >
+                  Blog
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -48,11 +64,27 @@ const Navigation = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li className="text-2xl inline-block font-medium">
-              <Link to={"/"}>Home</Link>
+            <li className="text-xl inline-block font-medium">
+              <NavLink
+                className={`${(isActive) =>
+                  isActive
+                    ? "active"
+                    : ""}`}
+                to={"/"}
+              >
+                Home
+              </NavLink>
             </li>
-            <li className="text-2xl inline-block font-medium">
-              <a>Blog</a>
+            <li className="text-xl inline-block font-medium">
+              <NavLink
+                className={`${(isActive) =>
+                  isActive
+                    ? "active"
+                    : ""}`}
+                to={"/blog"}
+              >
+                Blog
+              </NavLink>
             </li>
           </ul>
         </div>

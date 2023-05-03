@@ -26,8 +26,6 @@ const ChefDetails = () => {
   }, []);
 
   return (
-    <>
-      <Navigation></Navigation>
       <div className="my-6">
         <div>
           <div className="card grid grid-cols-1 md:grid-cols-2 lg:card-side bg-base-100 shadow-xl">
@@ -57,8 +55,6 @@ const ChefDetails = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
-    </>
   );
 };
 
