@@ -34,8 +34,9 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from)
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setError(error?.message));
   };
   // handle github sign in
   const handleGithubSignIn = () => {
@@ -43,6 +44,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from)
       })
       .catch((error) => setError(error.message));
   };

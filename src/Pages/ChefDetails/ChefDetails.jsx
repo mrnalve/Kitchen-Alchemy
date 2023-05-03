@@ -39,7 +39,6 @@ const ChefDetails = () => {
               <h4>Number fo Recipe: {number_of_recipes}</h4>
               <h4>Likes: {likes}</h4>
               <div className="card-actions">
-                {/* <img className="w-8" src={favourite} alt="" /> */}
               </div>
             </div>
           </div>
