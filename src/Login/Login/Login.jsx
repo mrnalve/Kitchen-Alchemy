@@ -95,7 +95,7 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <p className="text-error text-center">Error: {error}</p>
+          <p className="text-error text-center">{error}</p>
           <p className="text-center pb-2">
             New to Alchemy?
             <Link className="btn btn-link p-0" to={"/register"}>
