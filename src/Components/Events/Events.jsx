@@ -2,7 +2,7 @@ import React from "react";
 
 const Events = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 my-12">
       <div className="p-6 md:p-10">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
           Upcoming Events
