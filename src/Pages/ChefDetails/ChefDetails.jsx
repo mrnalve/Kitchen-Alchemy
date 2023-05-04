@@ -20,7 +20,7 @@ const ChefDetails = () => {
 
   // loading recipe data for each chef
   useEffect(() => {
-    fetch(`http://localhost:5000/recipes/${id}`)
+    fetch(`https://kitchen-alchemy-server-mrnalve.vercel.app/recipes/${id}`)
       .then((res) => res.json())
       .then((data) => setRecipeData(data));
   }, []);
